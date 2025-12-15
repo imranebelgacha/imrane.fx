@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imrane | Premium Video Editor</title>
+  <meta name="description" content="Premium Video Editor specialized in Short Form and Long Form content." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: { brand: { black: '#000000', red: '#0EA5E9', darkRed: '#0369A1' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #020617; color: #FFFFFF; overflow-x: hidden; perspective: 1200px; }
+
+    .bg-3d-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: radial-gradient(circle at 50% 0, #020617 0, #000000 55%, #000000 100%);
+      overflow: hidden;
+    }
+
+    .particle-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .particle-bg::before {
+      content: "";
+      position: absolute;
+      inset: -200px;
+      background-image:
+        radial-gradient(circle, rgba(148,163,184,0.12) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.25;
+      animation: particleDriftSlow 60s linear infinite;
+    }
+
+    .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(248,250,252,1) 0%, rgba(56,189,248,1) 40%, transparent 70%);
+      box-shadow:
+        0 0 10px rgba(56,189,248,0.9),
+        0 0 18px rgba(14,165,233,0.9),
+        0 0 28px rgba(56,189,248,0.7);
+      opacity: 0.9;
+    }
+
+    .p1  { top: 10%; left: 15%; animation: fly1  26s ease-in-out infinite alternate; }
+    .p2  { top: 25%; left: 70%; animation: fly2  22s ease-in-out infinite alternate; }
+    .p3  { top: 65%; left: 20%; animation: fly3  30s ease-in-out infinite alternate; }
+    .p4  { top: 55%; left: 80%; animation: fly4  24s ease-in-out infinite alternate; }
+    .p5  { top: 15%; left: 50%; animation: fly5  28s ease-in-out infinite alternate; }
+    .p6  { top: 80%; left: 40%; animation: fly6  32s ease-in-out infinite alternate; }
+    .p7  { top: 40%; left: 5%;  animation: fly7  27s ease-in-out infinite alternate; }
+    .p8  { top: 75%; left: 90%; animation: fly8  29s ease-in-out infinite alternate; }
+    .p9  { top: 5%;  left: 35%; animation: fly9  31s ease-in-out infinite alternate; }
+    .p10 { top: 32%; left: 90%; animation: fly10 23s ease-in-out infinite alternate; }
+    .p11 { top: 48%; left: 30%; animation: fly11 29s ease-in-out infinite alternate; }
+    .p12 { top: 68%; left: 60%; animation: fly12 34s ease-in-out infinite alternate; }
+    .p13 { top: 22%; left: 5%;  animation: fly13 26s ease-in-out infinite alternate; }
+    .p14 { top: 88%; left: 75%; animation: fly14 33s ease-in-out infinite alternate; }
+    .p15 { top: 52%; left: 50%; animation: fly15 27s ease-in-out infinite alternate; }
+    .p16 { top: 12%; left: 82%; animation: fly16 25s ease-in-out infinite alternate; }
+
+    @keyframes particleDriftSlow {
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      50%  { transform: translate3d(-40px,-20px,0) scale(1.03); }
+      100% { transform: translate3d(0,0,0) scale(1); }
+    }
+
+    @keyframes fly1 {
+      0%   { transform: translate3d(0, 0, 0) scale(1);   opacity: 0.7; }
+      25%  { transform: translate3d(40px, -20px, 0) scale(1.08); opacity: 1; }
+      50%  { transform: translate3d(10px, 30px, 0) scale(0.96); opacity: 0.85; }
+      75%  { transform: translate3d(-30px, -10px, 0) scale(1.05); opacity: 1; }
+      100% { transform: translate3d(20px, 25px, 0) scale(1);   opacity: 0.8; }
+    }
+
+    @keyframes fly2 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.95); opacity: 0.8; }
+      20%  { transform: translate3d(-25px, 25px, 0) scale(1.05); opacity: 1; }
+      45%  { transform: translate3d(15px, -35px, 0) scale(1.02); opacity: 0.9; }
+      70%  { transform: translate3d(-35px, -10px, 0) scale(0.97); opacity: 0.85; }
+      100% { transform: translate3d(20px, 20px, 0) scale(1.07); opacity: 1; }
+    }
+
+    @keyframes fly3 {
+      0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+      30%  { transform: translate3d(35px, 10px, 0) scale(1.04); opacity: 1; }
+      55%  { transform: translate3d(-20px, -25px, 0) scale(0.92); opacity: 0.85; }
+      80%  { transform: translate3d(15px, 35px, 0) scale(1.06); opacity: 1; }
+      100% { transform: translate3d(-15px, 15px, 0) scale(0.98); opacity: 0.8; }
+    }
+
+    @keyframes fly4 {
+      0%   { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.8; }
+      25%  { transform: translate3d(-30px, -15px, 0) scale(0.98); opacity: 0.9; }
+      50%  { transform: translate3d(25px, 25px, 0) scale(1.07); opacity: 1; }
+      75%  { transform: translate3d(-15px, 35px, 0) scale(0.95); opacity: 0.85; }
+      100% { transform: translate3d(10px, -20px, 0) scale(1.02); opacity: 1; }
+    }
+
+    @keyframes fly5 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0.7; }
+      20%  { transform: translate3d(30px, 20px, 0) scale(1.03); opacity: 0.95; }
+      50%  { transform: translate3d(-25px, -30px, 0) scale(1.08); opacity: 1; }
+      80%  { transform: translate3d(15px, -10px, 0) scale(0.96); opacity: 0.85; }
+      100% { transform: translate3d(-10px, 25px, 0) scale(1.02); opacity: 0.9; }
+    }
+
+    @keyframes fly6 {
+      0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+      30%  { transform: translate3d(-20px, 20px, 0) scale(1.04); opacity: 1; }
+      55%  { transform: translate3d(30px, -25px, 0) scale(0.97); opacity: 0.9; }
+      80%  { transform: translate3d(-35px, 10px, 0) scale(1.05); opacity: 1; }
+      100% { transform: translate3d(15px, 30px, 0) scale(0.96); opacity: 0.8; }
+    }
+
+    @keyframes fly7 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.95); opacity: 0.8; }
+      25%  { transform: translate3d(25px, -20px, 0) scale(1.02); opacity: 1; }
+      50%  { transform: translate3d(-15px, 25px, 0) scale(1.08); opacity: 0.9; }
+      75%  { transform: translate3d(35px, 15px, 0) scale(0.98); opacity: 0.85; }
+      100% { transform: translate3d(-20px, -25px, 0) scale(1.04); opacity: 1; }
+    }
+
+    @keyframes fly8 {
+      0%   { transform: translate3d(0, 0, 0) scale(1.05); opacity: 0.8; }
+      20%  { transform: translate3d(-30px, 15px, 0) scale(0.96); opacity: 0.9; }
+      45%  { transform: translate3d(20px, -30px, 0) scale(1.07); opacity: 1; }
+      70%  { transform: translate3d(-25px, 25px, 0) scale(0.95); opacity: 0.85; }
+      100% { transform: translate3d(15px, 20px, 0) scale(1.03); opacity: 0.92; }
+    }
+
+    @keyframes fly9 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.75; }
+      25%  { transform: translate3d(25px, -15px, 0) scale(1.05); opacity: 1; }
+      50%  { transform: translate3d(-20px, 15px, 0) scale(0.93); opacity: 0.85; }
+      75%  { transform: translate3d(30px, 25px, 0) scale(1.07); opacity: 1; }
+      100% { transform: translate3d(-15px, -20px, 0) scale(1.0); opacity: 0.8; }
+    }
+
+    @keyframes fly10 {
+      0%   { transform: translate3d(0, 0, 0) scale(1.02); opacity: 0.8; }
+      20%  { transform: translate3d(-30px, 20px, 0) scale(0.96); opacity: 0.9; }
+      45%  { transform: translate3d(15px, -25px, 0) scale(1.06); opacity: 1; }
+      70%  { transform: translate3d(-20px, 30px, 0) scale(0.97); opacity: 0.85; }
+      100% { transform: translate3d(10px, -15px, 0) scale(1.03); opacity: 0.95; }
+    }
+
+    @keyframes fly11 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.94); opacity: 0.78; }
+      25%  { transform: translate3d(20px, 25px, 0) scale(1.04); opacity: 1; }
+      50%  { transform: translate3d(-30px, -20px, 0) scale(1.06); opacity: 0.9; }
+      75%  { transform: translate3d(15px, 30px, 0) scale(0.97); opacity: 0.85; }
+      100% { transform: translate3d(-10px, -15px, 0) scale(1.02); opacity: 0.9; }
+    }
+
+    @keyframes fly12 {
+      0%   { transform: translate3d(0, 0, 0) scale(1.0); opacity: 0.76; }
+      30%  { transform: translate3d(-25px, -15px, 0) scale(0.95); opacity: 0.9; }
+      55%  { transform: translate3d(35px, 20px, 0) scale(1.07); opacity: 1; }
+      80%  { transform: translate3d(-15px, 30px, 0) scale(0.98); opacity: 0.86; }
+      100% { transform: translate3d(20px, -20px, 0) scale(1.03); opacity: 0.92; }
+    }
+
+    @keyframes fly13 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.98); opacity: 0.8; }
+      25%  { transform: translate3d(30px, 10px, 0) scale(1.05); opacity: 1; }
+      50%  { transform: translate3d(-20px, 30px, 0) scale(0.94); opacity: 0.88; }
+      75%  { transform: translate3d(15px, -25px, 0) scale(1.06); opacity: 0.95; }
+      100% { transform: translate3d(-15px, 15px, 0) scale(1.0); opacity: 0.85; }
+    }
+
+    @keyframes fly14 {
+      0%   { transform: translate3d(0, 0, 0) scale(1.03); opacity: 0.78; }
+      20%  { transform: translate3d(-20px, -30px, 0) scale(0.96); opacity: 0.9; }
+      45%  { transform: translate3d(25px, 20px, 0) scale(1.07); opacity: 1; }
+      70%  { transform: translate3d(-30px, 15px, 0) scale(0.97); opacity: 0.86; }
+      100% { transform: translate3d(15px, -20px, 0) scale(1.02); opacity: 0.9; }
+    }
+
+    @keyframes fly15 {
+      0%   { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.8; }
+      25%  { transform: translate3d(20px, -25px, 0) scale(1.05); opacity: 1; }
+      50%  { transform: translate3d(-25px, 20px, 0) scale(0.95); opacity: 0.88; }
+      75%  { transform: translate3d(30px, 25px, 0) scale(1.06); opacity: 0.95; }
+      100% { transform: translate3d(-15px, -10px, 0) scale(1.0); opacity: 0.85; }
+    }
+
+    @keyframes fly16 {
+      0%   { transform: translate3d(0, 0, 0) scale(1.02); opacity: 0.78; }
+      20%  { transform: translate3d(-25px, 10px, 0) scale(0.96); opacity: 0.9; }
+      45%  { transform: translate3d(15px, -30px, 0) scale(1.06); opacity: 1; }
+      70%  { transform: translate3d(-20px, 25px, 0) scale(0.97); opacity: 0.86; }
+      100% { transform: translate3d(20px, -15px, 0) scale(1.03); opacity: 0.92; }
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .glass-strong {
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass:hover {
+      box-shadow:
+        0 0 0 1px rgba(56,189,248,0.4),
+        0 18px 40px rgba(15,23,42,0.9);
+    }
+
+    .card-3d { perspective: 1000px; transform-style: preserve-3d; cursor: pointer; transition: transform 0.6s ease-out; }
+    .card-3d:hover { transform: rotateX(5deg) rotateY(-5deg) scale(1.02); }
+    .card-3d-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.6s ease-out; }
+    .card-3d:hover .card-3d-inner { transform: translateZ(30px); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px) rotateX(10deg);
+      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+      transform-style: preserve-3d;
+    }
+    .reveal.active { opacity: 1; transform: translateY(0) rotateX(0deg); }
+
+    .portfolio-item { transform-style: preserve-3d; perspective: 1000px; }
+    .portfolio-item:hover { transform: translateZ(50px) rotateY(-8deg); }
+
+    .modal-backdrop { transition: opacity 0.3s ease; backdrop-filter: blur(5px); }
+    .modal-content { transform-style: preserve-3d; transition: all 0.3s ease; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.5); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #0EA5E9 0%, #0369A1 100%);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #38BDF8 0%, #0EA5E9 100%);
+    }
+
+    .shine { position: relative; overflow: hidden; }
+    .shine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+      z-index: 10;
+    }
+    .shine:hover::before { left: 100%; }
+
+    .reveal.delay-100 { animation-delay: 0.1s; }
+    .reveal.delay-200 { animation-delay: 0.2s; }
+    .reveal.delay-300 { animation-delay: 0.3s; }
+
+    #mobile-menu {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      width: 100vw;
+      max-width: 100%;
+      background: rgba(20, 20, 20, 0.95) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: none !important;
+      z-index: 40;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    #mobile-menu.hidden { display: none; }
+    #mobile-menu > div {
+      padding: 1rem 0 !important;
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+    }
+    #mobile-menu a, #mobile-menu button {
+      display: block;
+      width: 100% !important;
+      padding: 1rem !important;
+      text-align: center !important;
+      border: none !important;
+      background: none !important;
+      color: inherit !important;
+    }
+    #mobile-menu button {
+      background: #0EA5E9 !important;
+      color: white !important;
+      margin: 1rem auto !important;
+      width: calc(100% - 2rem) !important;
+      border-radius: 0.5rem !important;
+      padding: 1rem !important;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .hero-line {
+      opacity: 0;
+      animation: fadeUp 0.6s ease-out forwards;
+    }
+    .hero-line.delay-1 { animation-delay: 0.1s; }
+    .hero-line.delay-2 { animation-delay: 0.2s; }
+    .hero-line.delay-3 { animation-delay: 0.3s; }
+
+    .hero-btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.22s ease, border-color 0.22s ease;
+    }
+    .hero-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.45);
+    }
+
+    #navbar.scrolled {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(12, 12, 12, 0.9);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      height: 64px;
+    }
+    #navbar.scrolled .logo-text {
+      font-size: 1.1rem;
+    }
+
+    .service-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      border-color: rgba(14,165,233,0.4);
+    }
+
+    .why-card { transition: transform 0.25s ease; }
+    .why-icon {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .why-card:hover {
+      transform: scale(1.03);
+    }
+    .why-card:hover .why-icon {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow: 0 10px 25px rgba(14,165,233,0.45);
+    }
+
+    .input-field {
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .input-field:focus {
+      box-shadow: 0 0 0 1px rgba(14,165,233,0.6), 0 0 18px rgba(14,165,233,0.35);
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-4px); }
+      40% { transform: translateX(4px); }
+      60% { transform: translateX(-3px); }
+      80% { transform: translateX(3px); }
+    }
+    .shake {
+      animation: shake 0.25s ease-in-out;
+    }
+
+    .portfolio-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      border-color: rgba(14,165,233,0.4);
+    }
+    .portfolio-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-brand-red selection:text-white relative">
+  <div class="bg-3d-container">
+    <div class="particle-bg">
+      <div class="particle p1"></div>
+      <div class="particle p2"></div>
+      <div class="particle p3"></div>
+      <div class="particle p4"></div>
+      <div class="particle p5"></div>
+      <div class="particle p6"></div>
+      <div class="particle p7"></div>
+      <div class="particle p8"></div>
+      <div class="particle p9"></div>
+      <div class="particle p10"></div>
+      <div class="particle p11"></div>
+      <div class="particle p12"></div>
+      <div class="particle p13"></div>
+      <div class="particle p14"></div>
+      <div class="particle p15"></div>
+      <div class="particle p16"></div>
+    </div>
+  </div>
+
+  <div class="relative z-10">
+    <nav class="fixed top-0 w-full z-50 glass-strong transition-all duration-300" id="navbar">
+      <div class="w-full px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          <div class="flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+            <span class="logo-text text-2xl font-bold tracking-widest text-white hover:text-brand-red transition-colors duration-300">IMRANE</span>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a href="#home" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+              <a href="#services" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+              <a href="#portfolio" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Portfolio</a>
+              <a href="#whyme" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">Why Me</a>
+              <button class="bg-brand-red hover:bg-brand-darkRed text-white px-5 py-2 rounded-full text-sm font-medium transition-all transform hover:scale-110 hover:shadow-lg hover:shadow-sky-900/50 shadow-lg shadow-sky-900/20 shine" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Talk</button>
+            </div>
+          </div>
+          <div class="md:hidden flex">
+            <button type="button" id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
+              <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-white/5">Home</a>
+          <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Services</a>
+          <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Portfolio</a>
+          <a href="#whyme" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-white/5">Why Me</a>
+          <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" class="block w-full py-3 text-base font-bold bg-brand-red text-white rounded-md mt-4">Let's Talk</button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[80vh] flex items-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div class="reveal active">
+            <div class="inline-block mb-6 px-4 py-1.5 rounded-full glass border border-brand-red/30 card-3d shine">
+              <span class="text-xs text-gray-400 mr-2">High-End Video Editing</span>
+              <span class="text-brand-red text-xs font-semibold tracking-wider uppercase">Short & Long Form Specialist</span>
+            </div>
+
+            <h1 class="hero-line text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6">
+              Turn your ideas into <span class="text-brand-red">scroll-stopping videos.</span>
+            </h1>
+            <p class="hero-line delay-1 mt-6 text-xl text-gray-400 max-w-2xl mx-auto mb-2">
+              Helping brands and creators stand out with sharp, optimized edits that actually convert.
+            </p>
+            <p class="hero-line delay-2 text-sm text-gray-500 mb-10 font-medium">
+              Specialized in short form for Instagram & TikTok, plus long form for YouTube.
+            </p>
+
+            <div class="hero-line delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+                class="hero-btn px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-brand-red hover:bg-brand-darkRed md:text-lg transition-all shadow-lg shadow-sky-900/30 hover:shadow-sky-900/50 shine"
+              >
+                Get a Quote
+              </button>
+              <a
+                href="#portfolio"
+                class="hero-btn px-8 py-4 border border-gray-600 text-base font-medium rounded-lg text-gray-300 bg-transparent hover:bg-white/5 hover:border-white md:text-lg transition-all shine"
+              >
+                View Portfolio
+              </a>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-2 text-xs text-gray-500">
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/5">
+                200+ videos edited for personal brands and businesses
+              </span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/5">
+                Specialized in Reels, TikTok & YouTube content
+              </span>
+            </div>
+
+            <div class="mt-12 flex justify-center">
+              <button
+                onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"
+                class="flex flex-col items-center text-[11px] text-gray-500 hover:text-white transition-colors"
+              >
+                <span class="mb-1">Scroll to services</span>
+                <span class="inline-flex h-9 w-[1px] bg-gradient-to-b from-transparent via-sky-500 to-transparent animate-pulse"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="relative pb-6">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="glass border border-white/5 rounded-2xl px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-xs sm:text-sm text-gray-400 uppercase tracking-[0.2em]">
+              Trusted by brands & creators
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center text-[11px] sm:text-xs text-gray-500">
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">E‑commerce brands</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Coaches & agencies</span>
+              <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10">Content creators</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-xs sm:text-sm">
+            <div class="glass border border-white/5 rounded-xl py-3">
+              <p class="text-gray-400 mb-1">Videos Delivered</p>
+              <p class="text-lg font-bold text-white">200+</p>
+            </div>
+            <div class="glass border border-white/5 rounded-xl py-3">
+              <p class="text-gray-400 mb-1">Avg. Turnaround</p>
+              <p class="text-lg font-bold text-white">24–48h</p>
+            </div>
+            <div class="glass border border-white/5 rounded-xl py-3">
+              <p class="text-gray-400 mb-1">Platforms</p>
+              <p class="text-lg font-bold text-white">IG • TT • YT</p>
+            </div>
+          </div>
+
+          <div class="text-center mb-16 reveal">
+            <h2 class="text-3xl font-bold text-white mb-4">Services</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">High-converting edits tailored to your specific platform needs.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass service-card border border-white/5 p-8 rounded-xl transition-all duration-300 group reveal card-3d shine">
+              <div class="card-3d-inner">
+                <div class="w-12 h-12 bg-brand-red/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-red/20 transition-colors transform group-hover:scale-110">
+                  <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Short Form Content</h3>
+                <p class="text-sm text-brand-red mb-4 font-medium">Reels / TikTok / YouTube Shorts</p>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                  Viral-style editing designed to stop the scroll. Fast-paced cuts, engaging captions, sound design, and retention-focused structures.
+                </p>
+                <ul class="text-gray-500 text-sm space-y-2">
+                  <li class="flex items-center"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mr-2"></span>Vertical (9:16) Optimized</li>
+                  <li class="flex items-center"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mr-2"></span>Dynamic Captions</li>
+                  <li class="flex items-center"><span class="w-1.5 h-1.5 bg-brand-red rounded-full mr-2"></span>Trending Audio Integration</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="glass service-card border border-white/5 p-8 rounded-xl transition-all duration-300 group reveal card-3d shine delay-100">
+              <div class="card-3d-inner">
+                <div class="w-12 h-12 bg-sky-500/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-sky-500/20 transition-colors transform group-hover:scale-110">
+                  <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Long Form Content</h3>
+                <p class="text-sm text-sky-400 mb-4 font-medium">YouTube / Podcasts / Documentaries</p>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                  Storytelling-driven editing that keeps viewers watching. Advanced pacing, B-roll selection, color grading, and professional audio mixing.
+                </p>
+                <ul class="text-gray-500 text-sm space-y-2">
+                  <li class="flex items-center"><span class="w-1.5 h-1.5 bg-sky-400 rounded-full mr-2"></span>Horizontal (16:9) Optimized</li>
+                  <li class="flex items-center"><span class="w-1.5 h-1.5 bg-sky-400 rounded-full mr-2"></span>Narrative Pacing</li>
+                  <li class="flex items-center"><span class="w-1.5 h-1.5 bg-sky-400 rounded-full mr-2"></span>Professional Color & Audio</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16 reveal">
+            <h2 class="text-3xl font-bold text-white mb-4">Portfolio</h2>
+            <p class="text-gray-400">Watch my work right here.</p>
+          </div>
+
+          <!-- Short Form -->
+          <div class="mb-20">
+            <div class="flex items-center mb-8">
+              <div class="h-8 w-1 bg-gradient-to-b from-brand-red to-transparent mr-4 animate-pulse"></div>
+              <h3 class="text-xl font-bold text-white">
+                Short Form
+                <span class="text-gray-500 text-sm font-normal ml-2">9:16</span>
+              </h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal active card-3d shine flex flex-col">
+                <div class="relative aspect-[9/16] w-full overflow-hidden">
+                  <iframe
+                    class="portfolio-iframe"
+                    src="https://www.youtube.com/embed/l6I8vBm35qw?modestbranding=1&rel=0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">DYNAMIC EDITING</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 text-[11px] text-gray-300">
+                      <span class="w-4 h-4 bg-red-600 rounded"></span>
+                      YouTube
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">Short-form, hook-first, high-energy pacing.</p>
+                </div>
+              </div>
+
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal active card-3d shine flex flex-col delay-100">
+                <div class="relative aspect-[9/16] w-full overflow-hidden">
+                  <iframe
+                    class="portfolio-iframe"
+                    src="https://www.youtube.com/embed/QkLVWc2lvJk?modestbranding=1&rel=0"
+                    title="E-commerce Product Ad - YouTube Short"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">CAPTION STYLE</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 text-[11px] text-gray-300">
+                      <span class="w-4 h-4 rounded bg-gradient-to-tr from-purple-500 via-pink-500 to-yellow-500"></span>
+                      Instagram
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">ENGAGING CAPTION'S.</p>
+                </div>
+              </div>
+
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal active card-3d shine flex flex-col delay-200">
+                <div class="relative aspect-[9/16] w-full overflow-hidden">
+                  <iframe
+                    class="portfolio-iframe"
+                    src="https://www.youtube.com/embed/QuuFpRqsYqg?modestbranding=1&rel=0"
+                    title="Motion Graphics - YouTube Short"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">MOTION GRAPHICS</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 text-[11px] text-gray-300">
+                      <span class="w-4 h-4 rounded bg-gradient-to-tr from-purple-500 via-pink-500 to-yellow-500"></span>
+                      Instagram
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">Cinematic 3D CAMERA MOVEMENTS.</p>
+                </div>
+              </div>
+
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal active card-3d shine flex flex-col delay-300">
+                <div class="relative aspect-[9/16] w-full overflow-hidden">
+                  <iframe
+                    class="portfolio-iframe"
+                    src="https://www.youtube.com/embed/Ft9A2kB76Wc?modestbranding=1&rel=0"
+                    title="Story Telling - YouTube Short"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">STORY TELLING</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 text-[11px] text-gray-300">
+                      <span class="w-4 h-4 rounded bg-gradient-to-tr from-purple-500 via-pink-500 to-yellow-500"></span>
+                      Instagram / TikTok
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">Punchy captions and zooms for retention.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explainer & SaaS -->
+          <div class="mb-20">
+            <div class="flex items-center mb-8">
+              <div class="h-8 w-1 bg-gradient-to-b from-emerald-400 to-transparent mr-4 animate-pulse"></div>
+              <h3 class="text-xl font-bold text-white">
+                Explainer &amp; SaaS
+                <span class="text-gray-500 text-sm font-normal ml-2">Product explainers</span>
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal card-3d shine flex flex-col">
+                <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+                  <svg class="w-16 h-16 text-emerald-400/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16v6H4zM4 13h7v6H4zM13 13h7v6h-7z"/>
+                  </svg>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">SaaS Dashboard Explainer</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-emerald-500/10 text-[11px] text-emerald-300">
+                      SaaS
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">
+                    Clean UI showcases, animated callouts and benefit‑driven messaging for landing page videos.
+                  </p>
+                </div>
+              </div>
+
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal card-3d shine flex flex-col delay-100">
+                <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-sky-900 via-slate-900 to-slate-900 flex items-center justify-center">
+                  <svg class="w-16 h-16 text-sky-400/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m-4-4l4 4 4-4M8 8l4-4 4 4"/>
+                  </svg>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">Onboarding Feature Tour</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-sky-500/10 text-[11px] text-sky-300">
+                      Web App
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">
+                    Step‑by‑step walkthroughs with smooth transitions to reduce user friction and support tickets.
+                  </p>
+                </div>
+              </div>
+
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal card-3d shine flex flex-col delay-200">
+                <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-cyan-900 via-slate-900 to-slate-900 flex items-center justify-center">
+                  <svg class="w-16 h-16 text-cyan-300/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4h10a2 2 0 012 2v13l-4-3-4 3-4-3-4 3V6a2 2 0 012-2z"/>
+                  </svg>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between mb-1">
+                    <h4 class="text-white font-semibold text-sm">Startup Explainer</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-cyan-500/10 text-[11px] text-cyan-300">
+                      Explainer
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400">
+                    Problem–solution story with hook, value props and CTA for ads and websites.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Long Form -->
+          <div>
+            <div class="flex items-center mb-8">
+              <div class="h-8 w-1 bg-gradient-to-b from-sky-500 to-transparent mr-4 animate-pulse"></div>
+              <h3 class="text-xl font-bold text-white">
+                Long Form
+                <span class="text-gray-500 text-sm font-normal ml-2">16:9</span>
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal active card-3d shine flex flex-col">
+                <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                  <svg class="w-20 h-20 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between">
+                    <h4 class="text-white font-semibold text-sm">Founder Documentary</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 text-[11px] text-gray-300">
+                      <span class="w-4 h-4 bg-red-600 rounded"></span>
+                      YouTube
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 mt-1">Narrative-driven story with b-roll & sound design.</p>
+                </div>
+              </div>
+
+              <div class="glass portfolio-card rounded-xl overflow-hidden reveal active card-3d shine flex flex-col delay-100">
+                <div class="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                  <svg class="w-20 h-20 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                  <div class="flex items-center justify-between">
+                    <h4 class="text-white font-semibold text-sm">Tech Review & Unboxing</h4>
+                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/5 text-[11px] text-gray-300">
+                      <span class="w-4 h-4 bg-red-600 rounded"></span>
+                      YouTube
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-gray-400 mt-1">Clean pacing, overlays and product focus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="whyme" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16 reveal">
+            <h2 class="text-3xl font-bold text-white">Why work with me?</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass why-card p-6 rounded-xl reveal card-3d shine delay-100">
+              <div class="why-icon w-10 h-10 rounded-full bg-brand-red/15 flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M13 2L3 14h7l-1 8 10-12h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-sm font-semibold text-white mb-1">Fast Delivery</h3>
+              <p class="text-xs text-gray-400">24-48h turnaround for short form.</p>
+            </div>
+
+            <div class="glass why-card p-6 rounded-xl reveal card-3d shine delay-200">
+              <div class="why-icon w-10 h-10 rounded-full bg-brand-red/15 flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 3l2.9 6.3 6.6.6-4.9 4.3 1.5 6.5L12 17.8 5.9 20.7l1.5-6.5-4.9-4.3 6.6-.6z"></path>
+                </svg>
+              </div>
+              <h3 class="text-sm font-semibold text-white mb-1">Premium Look</h3>
+              <p class="text-xs text-gray-400">Cinematic color, audio & pacing.</p>
+            </div>
+
+            <div class="glass why-card p-6 rounded-xl reveal card-3d shine delay-300">
+              <div class="why-icon w-10 h-10 rounded-full bg-brand-red/15 flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-brand-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 3l7 4v6c0 4-2.7 7.4-7 8-4.3-.6-7-4-7-8V7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-sm font-semibold text-white mb-1">Revision Friendly</h3>
+              <p class="text-xs text-gray-400">We refine until it feels right.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-brand-red/5 to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div class="reveal">
+              <h2 class="text-4xl font-extrabold text-white mb-6">
+                Let's build your <br />
+                <span class="text-brand-red">next video.</span>
+              </h2>
+              <p class="text-gray-400 mb-8 text-lg">
+                Ready to level up? Fill out the form and you'll get a reply within 24 hours.
+              </p>
+
+              <div class="space-y-6">
+                <a href="mailto:imranebelgacha1@gmail.com" class="flex items-center group p-4 rounded-lg transition-all">
+                  <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-red transition-colors group-hover:scale-110 transform">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </div>
+                  <span class="ml-4 text-gray-300 group-hover:text-white transition-colors">imranebelgacha1@gmail.com</span>
+                </a>
+
+                <a href="https://www.instagram.com/imrane.fx/" target="_blank" class="flex items-center group p-4 rounded-lg transition-all">
+                  <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-red transition-colors group-hover:scale-110 transform">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/>
+                    </svg>
+                  </div>
+                  <span class="ml-4 text-gray-300 group-hover:text-white transition-colors">imrane.fx</span>
+                </a>
+
+                <div class="flex items-center group p-4 rounded-lg transition-all">
+                  <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-red transition-colors group-hover:scale-110 transform">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                  </div>
+                  <span class="ml-4 text-gray-300 group-hover:text-white transition-colors">+212 654010488</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass p-8 rounded-2xl border-t border-white/10 reveal delay-200 card-3d shine">
+              <form id="contactForm" class="space-y-5">
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Full Name</label>
+                  <input type="text" name="fullName" required class="input-field w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/50 transition-all" placeholder="John Doe">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                    <input type="email" name="email" required class="input-field w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/50 transition-all" placeholder="john@company.com">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Phone (WhatsApp)</label>
+                    <input type="tel" name="phone" required class="input-field w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/50 transition-all" placeholder="+1 234 567 890">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Instagram Handle</label>
+                    <input type="text" name="instagram" class="input-field w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/50 transition-all" placeholder="@username">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-1">Est. Budget ($)</label>
+                    <input type="text" name="budget" class="input-field w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/50 transition-all" placeholder="e.g. 500 - 1000">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-2">Project Type</label>
+                  <input type="hidden" name="projectType" id="projectTypeInput" value="Short Form">
+                  <div class="flex gap-3">
+                    <button type="button" class="project-type-btn flex-1 py-2.5 border border-gray-700 rounded-lg text-sm font-medium text-gray-300 hover:border-gray-500 transition-all bg-brand-red border-brand-red text-white shine" data-value="Short Form">Short Form</button>
+                    <button type="button" class="project-type-btn flex-1 py-2.5 border border-gray-700 rounded-lg text-sm font-medium text-gray-300 hover:border-gray-500 transition-all shine" data-value="Long Form">Long Form</button>
+                    <button type="button" class="project-type-btn flex-1 py-2.5 border border-gray-700 rounded-lg text-sm font-medium text-gray-300 hover:border-gray-500 transition-all shine" data-value="Both">Both</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-400 mb-1">Project Description</label>
+                  <textarea name="description" required rows="4" class="input-field w-full bg-black/40 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-red focus:ring-2 focus:ring-brand-red/50 transition-all" placeholder="Tell me about your channel and goals..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-red hover:bg-brand-darkRed text-white font-bold py-4 rounded-lg transition-all transform hover:-translate-y-1 shadow-lg shadow-sky-900/30 hover:shadow-sky-900/50 shine">
+                  Send Request
+                </button>
+                <p id="formStatus" class="text-center text-sm hidden"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="border-t border-white/5 bg-black/50 py-12 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <span class="text-2xl font-bold tracking-widest text-white hover:text-brand-red transition-colors">IMRANE</span>
+            <p class="text-gray-500 text-sm mt-2">© <span id="year"></span> Premium Video Editor.</p>
+          </div>
+          <div class="flex space-x-6">
+            <a href="mailto:imranebelgacha1@gmail.com" class="text-gray-400 hover:text-white transition-colors">Email</a>
+            <a href="https://www.instagram.com/imrane.fx/" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+            <a href="https://wa.me/212654010488" class="text-gray-400 hover:text-white transition-colors">WhatsApp</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); });
+    });
+
+    const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(el => { observer.observe(el); });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+
+    const typeBtns = document.querySelectorAll('.project-type-btn');
+    const typeInput = document.getElementById('projectTypeInput');
+    typeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        typeBtns.forEach(b => {
+          b.classList.remove('bg-brand-red', 'border-brand-red', 'text-white');
+          b.classList.add('text-gray-300', 'border-gray-700');
+        });
+        btn.classList.remove('text-gray-300', 'border-gray-700');
+        btn.classList.add('bg-brand-red', 'border-brand-red', 'text-white');
+        typeInput.value = btn.dataset.value;
+      });
+    });
+
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyn6Xu0trUNONIumwQPxIAxg50E-z41gfW8BYiYDFwo75tRW-jUAQbJcoMp14yKsK_O/exec';
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      let hasError = false;
+      ['fullName','email','phone','description'].forEach(name => {
+        const field = form[name];
+        if (!field.value.trim()) {
+          hasError = true;
+          field.classList.add('shake', 'border-red-500');
+          setTimeout(() => field.classList.remove('shake'), 250);
+        } else {
+          field.classList.remove('border-red-500');
+        }
+      });
+      if (hasError) return;
+
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.innerText;
+      btn.disabled = true;
+      btn.innerText = "Sending...";
+      btn.classList.add('opacity-80');
+      formStatus.classList.add('hidden');
+
+      const formData = new URLSearchParams();
+      formData.append('fullName', form.fullName.value);
+      formData.append('email', form.email.value);
+      formData.append('phone', form.phone.value);
+      formData.append('instagram', form.instagram.value);
+      formData.append('budget', form.budget.value);
+      formData.append('projectType', form.projectType.value);
+      formData.append('description', form.description.value);
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      })
+      .then(() => {
+        form.reset();
+        btn.innerText = "Request Sent!";
+        btn.classList.replace('bg-brand-red', 'bg-green-600');
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerText = originalText;
+          btn.classList.replace('bg-green-600', 'bg-brand-red');
+          btn.classList.remove('opacity-80');
+        }, 2000);
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.innerText = originalText;
+        btn.classList.remove('opacity-80');
+        formStatus.textContent = "Something went wrong. Please try emailing directly.";
+        formStatus.classList.remove('hidden');
+        formStatus.classList.add('text-red-500');
+      });
+    });
+  </script>
+</body>
+</html>
